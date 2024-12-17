@@ -8,16 +8,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Task3 {
-
     public static void main(String[] args) {
-            if (args.length != 3) {
-                System.out.println("report.json");
-                return;
-            }
+        if (args.length != 3) {
+            System.out.println("Использование: java Task3 tests-edf09d69ff.docx values-c44d5c50d1.docx report.json");
+            return;
+        }
 
-        String testsFilePath = "/Users/olgabuinova/IdeaProjects/TaskJava/task3/src/main/java/tests-edf09d69ff.docx";
-        String valuesFilePath = "/Users/olgabuinova/IdeaProjects/TaskJava/task3/src/main/java/values-c44d5c50d1.docx";
-        String reportFilePath = "/Users/olgabuinova/IdeaProjects/TaskJava/task3/src/main/java/report.json";
+        String testsFilePath = args[0];
+        String valuesFilePath = args[1];
+        String reportFilePath = args[2];
 
         try {
             ObjectMapper mapper = new ObjectMapper();
@@ -37,6 +36,7 @@ public class Task3 {
             e.printStackTrace();
         }
     }
+
     private static Map<String, String> createValuesMap(JsonNode valuesRoot) {
         Map<String, String> valuesMap = new HashMap<>();
 
@@ -47,7 +47,6 @@ public class Task3 {
                 valuesMap.put(key, value);
             });
         }
-
         return valuesMap;
     }
 
@@ -73,3 +72,4 @@ public class Task3 {
         }
     }
 }
+
